@@ -1,588 +1,839 @@
 <!DOCTYPE html>
-<html lang="th">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ทธิน (Tathin) | แพลตฟอร์มบริการงานพิมพ์และอีคอมเมิร์ซ</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --green-dark: #0f3d24;
-      --green-main: #166534;
-      --green-light: #22c55e;
-      --yellow-main: #facc15;
-      --yellow-soft: #fef9c3;
-      --white: #ffffff;
-      --bg-soft: #f7faf8;
-      --text-main: #111827;
-      --text-muted: #4b5563;
-      --border: #e5e7eb;
-    }
+<html lang="th" class="scroll-smooth"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ทธิน (Tathin) - พิมพ์คมชัด จัดจ้านทุกรายละเอียด | บริการงานพิมพ์และอีคอมเมิร์ซครบวงจร</title>
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    <!-- Google Fonts: Prompt & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=Prompt:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
 
-    body {
-      font-family: 'Prompt', sans-serif;
-      background-color: var(--bg-soft);
-      color: var(--text-main);
-      line-height: 1.6;
-    }
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script id="tailwind-config-script">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        tathin: {
+                            green: '#045B36',
+                            dark: '#01331E',
+                            light: '#058C53',
+                            yellow: '#FFD700',
+                            amber: '#FFB800',
+                            bg: '#F8FAF9',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Prompt', 'Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
 
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    /* Header */
-    header {
-      background: var(--green-dark);
-      color: var(--white);
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      border-bottom: 3px solid var(--yellow-main);
-    }
-
-    .container {
-      max-width: 1160px;
-      margin: 0 auto;
-      padding: 0 16px;
-    }
-
-    .nav-wrap {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 12px 0;
-      flex-wrap: wrap;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .brand-badge {
-      background: var(--yellow-main);
-      color: var(--green-dark);
-      font-weight: 700;
-      padding: 6px 12px;
-      border-radius: 10px;
-      font-size: 1.15rem;
-    }
-
-    .brand-sub {
-      font-size: 0.85rem;
-      color: var(--yellow-soft);
-    }
-
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 10px 18px;
-      border-radius: 999px;
-      font-weight: 600;
-      font-size: 0.92rem;
-      cursor: pointer;
-      border: none;
-      transition: transform 0.15s ease, opacity 0.15s ease;
-    }
-
-    .btn:hover {
-      transform: translateY(-1px);
-      opacity: 0.95;
-    }
-
-    .btn-line {
-      background: var(--yellow-main);
-      color: var(--green-dark);
-    }
-
-    .btn-outline-light {
-      background: transparent;
-      color: var(--white);
-      border: 1.5px solid rgba(255, 255, 255, 0.45);
-    }
-
-    /* Hero */
-    .hero {
-      background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-main) 100%);
-      color: var(--white);
-      padding: 44px 0;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 24px;
-      align-items: center;
-    }
-
-    .hero-tag {
-      display: inline-block;
-      background: rgba(250, 204, 21, 0.18);
-      color: var(--yellow-main);
-      border: 1px solid var(--yellow-main);
-      padding: 4px 12px;
-      border-radius: 999px;
-      font-size: 0.85rem;
-      margin-bottom: 12px;
-      font-weight: 500;
-    }
-
-    .hero h1 {
-      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
-      line-height: 1.25;
-      margin-bottom: 10px;
-    }
-
-    .hero h1 span {
-      color: var(--yellow-main);
-    }
-
-    .hero p {
-      color: #e5f3ea;
-      margin-bottom: 20px;
-      font-size: 1rem;
-    }
-
-    .hero-card {
-      background: var(--white);
-      color: var(--text-main);
-      border-radius: 16px;
-      padding: 20px;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
-    }
-
-    .hero-card h3 {
-      color: var(--green-dark);
-      margin-bottom: 10px;
-      font-size: 1.05rem;
-    }
-
-    .contact-item {
-      margin-bottom: 10px;
-      font-size: 0.92rem;
-    }
-
-    /* Section & Category Filter */
-    .section {
-      padding: 40px 0;
-    }
-
-    .section-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      gap: 16px;
-      flex-wrap: wrap;
-      margin-bottom: 20px;
-    }
-
-    .section-title {
-      font-size: 1.5rem;
-      color: var(--green-dark);
-      font-weight: 700;
-    }
-
-    .section-desc {
-      color: var(--text-muted);
-      font-size: 0.92rem;
-    }
-
-    .filter-bar {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-bottom: 24px;
-    }
-
-    .filter-btn {
-      background: var(--white);
-      color: var(--green-dark);
-      border: 1.5px solid var(--border);
-      padding: 8px 16px;
-      border-radius: 999px;
-      font-family: inherit;
-      font-size: 0.88rem;
-      font-weight: 500;
-      cursor: pointer;
-    }
-
-    .filter-btn.active {
-      background: var(--green-main);
-      color: var(--white);
-      border-color: var(--green-main);
-    }
-
-    /* Product Gallery Grid */
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    .product-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      box-shadow: 0 4px 14px rgba(15, 61, 36, 0.05);
-    }
-
-    .product-img-wrap {
-      width: 100%;
-      aspect-ratio: 4 / 3;
-      background: #eef5f0;
-      overflow: hidden;
-    }
-
-    .product-img-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .product-body {
-      padding: 16px;
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-    }
-
-    .cat-pill {
-      align-self: flex-start;
-      background: var(--yellow-soft);
-      color: var(--green-dark);
-      font-size: 0.76rem;
-      font-weight: 600;
-      padding: 3px 10px;
-      border-radius: 999px;
-      margin-bottom: 8px;
-    }
-
-    .product-title {
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: var(--green-dark);
-      margin-bottom: 4px;
-    }
-
-    .product-sub {
-      font-size: 0.86rem;
-      color: var(--text-muted);
-      margin-bottom: 12px;
-      flex: 1;
-    }
-
-    .product-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-      padding-top: 10px;
-      border-top: 1px solid var(--border);
-    }
-
-    .price-tag {
-      font-weight: 700;
-      color: var(--green-main);
-      font-size: 0.92rem;
-    }
-
-    .btn-order-sm {
-      background: var(--green-dark);
-      color: var(--yellow-main);
-      padding: 7px 14px;
-      border-radius: 8px;
-      font-size: 0.84rem;
-      font-weight: 600;
-    }
-
-    /* Map Section */
-    .map-box {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      overflow: hidden;
-    }
-
-    .map-frame {
-      width: 100%;
-      height: 340px;
-      border: 0;
-      display: block;
-    }
-
-    .map-footer {
-      padding: 16px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-      background: var(--white);
-    }
-
-    /* Footer */
-    footer {
-      background: var(--green-dark);
-      color: var(--white);
-      padding: 28px 0;
-      margin-top: 24px;
-      text-align: center;
-      font-size: 0.88rem;
-    }
-
-    footer span {
-      color: var(--yellow-main);
-      font-weight: 600;
-    }
-
-    /* Responsive */
-    @media (max-width: 900px) {
-      .hero-grid {
-        grid-template-columns: 1fr;
-      }
-      .product-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (max-width: 560px) {
-      .product-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+    <style id="tathin-custom-style">
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        .gallery-card:hover .gallery-img {
+            transform: scale(1.06);
+        }
+        body.edit-mode [data-editable] {
+            outline: 2px dashed #FFB800;
+            outline-offset: 4px;
+            border-radius: 6px;
+            cursor: text;
+            transition: all 0.2s;
+        }
+        body.edit-mode [data-editable]:hover,
+        body.edit-mode [data-editable]:focus {
+            background-color: rgba(255, 215, 0, 0.15);
+            outline: 2px solid #045B36;
+        }
+    </style>
 </head>
-<body>
+<body class="bg-tathin-bg text-gray-800 font-sans antialiased selection:bg-tathin-yellow selection:text-tathin-dark">
 
-  <header>
-    <div class="container nav-wrap">
-      <div class="brand">
-        <span class="brand-badge" id="shop-brand">ทธิน · Tathin</span>
-        <span class="brand-sub" id="shop-slogan">ทธิน พิมพ์คมชัด จัดจ้านทุกรายละเอียด</span>
-      </div>
-      <div class="nav-actions">
-        <a id="tel-link" href="tel:0646428266" class="btn btn-outline-light">โทร. 064-6428266</a>
-        <a id="line-top-btn" href="https://lin.ee/2deyskIkX" target="_blank" rel="noopener" class="btn btn-line">สั่งซื้อผ่าน LINE OA</a>
-      </div>
+    <!-- =========================================================================
+         แถบเครื่องมือผู้ดูแลระบบ (สำหรับเปิดใช้บนคอมพิวเตอร์ เชื่อมต่อ GitHub โดยตรง)
+         จะถูกลบออกอัตโนมัติเมื่อส่งออกไฟล์ index.html ขึ้น GitHub
+         ========================================================================= -->
+    
+
+    <!-- กล่องแจ้งเตือน Toast -->
+    
+
+    <!-- MODAL ตั้งค่า GitHub Token & Repository -->
+    
+
+    <!-- MODAL ยืนยันการยกเลิกการแก้ไข -->
+    
+
+    <!-- MODAL เลือกรูปที่มีอยู่แล้วในโฟลเดอร์ pic/ บน GitHub -->
+    
+
+    <!-- TOP ANNOUNCEMENT BAR -->
+    <div class="bg-tathin-dark text-white text-xs sm:text-sm py-2.5 px-4 border-b border-tathin-light/20">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2 text-center sm:text-left">
+            <div class="flex items-center gap-2 font-medium">
+                <span class="bg-tathin-yellow text-tathin-dark font-bold px-2.5 py-0.5 rounded-md text-[10px] sm:text-xs">TATHIN PRINT</span>
+                <span id="cfg-slogan-top" data-editable="sloganTop">ทธิน พิมพ์คมชัด จัดจ้านทุกรายละเอียด — สั่งซื้อง่ายผ่าน LINE OA</span>
+            </div>
+            <div class="flex items-center gap-4 text-xs">
+                <a id="cfg-phone-top" href="tel:0646428266" class="hover:text-tathin-yellow transition flex items-center gap-1.5" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-solid fa-phone"></i> <span>064-6428266</span>
+                </a>
+                <span class="text-tathin-light">|</span>
+                <a id="cfg-map-top" href="https://goo.gl/maps/UTUp8XueckQg2qAN6" target="_blank" rel="noopener noreferrer" class="hover:text-tathin-yellow transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-location-dot"></i> <span>พิกัดร้าน Google Maps</span>
+                </a>
+            </div>
+        </div>
     </div>
-  </header>
 
-  <section class="hero">
-    <div class="container hero-grid">
-      <div>
-        <span class="hero-tag">Creative Commerce &amp; Printing Platform</span>
-        <h1><span>ทธิน (Tathin)</span> งานพิมพ์คุณภาพ<br>ครบทุกหมวดหมู่ พร้อมส่งทั่วไทย</h1>
-        <p id="hero-slogan-sub">ทธิน พิมพ์คมชัด จัดจ้านทุกรายละเอียด — รองรับทั้งการสั่งทำเฉพาะแบรนด์และแบบสำเร็จรูป</p>
-        <div class="nav-actions">
-          <a id="line-hero-btn" href="https://lin.ee/2deyskIkX" target="_blank" rel="noopener" class="btn btn-line">ติดต่อสั่งซื้อผ่าน LINE OA</a>
-          <a href="#products" class="btn btn-outline-light">ดูหมวดหมู่สินค้า</a>
-        </div>
-      </div>
+    <!-- MAIN NAVBAR -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-emerald-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- LOGO / BRANDING -->
+            <a href="#" class="flex items-center gap-3 group select-none">
+                <div class="bg-tathin-dark text-white px-3.5 py-2 rounded-2xl shadow-md border-2 border-tathin-yellow group-hover:scale-105 transition duration-300 flex flex-col items-center justify-center">
+                    <span class="font-extrabold text-2xl tracking-tight text-tathin-yellow leading-none">ทธิน</span>
+                    <span class="text-[8px] text-emerald-300 tracking-widest mt-0.5">TATHIN</span>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-bold text-xl text-tathin-dark tracking-tight leading-none">ทธิน (Tathin)</span>
+                    <span class="text-xs font-medium text-tathin-green mt-1">สติกเกอร์ ฉลากสินค้า &amp; สื่อสิ่งพิมพ์</span>
+                </div>
+            </a>
 
-      <div class="hero-card">
-        <h3>ช่องทางติดต่อและหน้าร้าน</h3>
-        <div class="contact-item"><strong>ชื่อร้าน:</strong> <span id="card-shop-name">ทธิน (Tathin)</span></div>
-        <div class="contact-item"><strong>โทรศัพท์:</strong> <span id="card-phone">064-6428266</span></div>
-        <div class="contact-item">
-          <strong>LINE OA:</strong>
-          <a id="card-line-link" href="https://lin.ee/2deyskIkX" target="_blank" rel="noopener" style="color:#166534; font-weight:600; text-decoration:underline;">
-            คลิกแชทสั่งพิมพ์
-          </a>
+            <!-- DESKTOP NAV LINKS -->
+            <nav class="hidden lg:flex items-center gap-7 text-sm font-medium text-gray-700">
+                <a href="#categories" class="hover:text-tathin-green transition">หมวดหมู่สินค้า</a>
+                <a href="#gallery" class="hover:text-tathin-green transition">ตัวอย่างผลงานพิมพ์</a>
+                <a href="#calculator" class="hover:text-tathin-green transition">ประเมินราคาด่วน</a>
+                <a href="#contact-map" class="hover:text-tathin-green transition">แผนที่ &amp; ติดต่อ</a>
+            </nav>
+
+            <!-- CALL TO ACTION BUTTONS -->
+            <div class="flex items-center gap-2.5 sm:gap-3">
+                <a id="cfg-phone-nav" href="tel:0646428266" class="hidden sm:flex items-center gap-2 border border-tathin-green text-tathin-green hover:bg-emerald-50 px-4 py-2.5 rounded-xl text-sm font-semibold transition" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-solid fa-phone"></i>
+                    <span>064-6428266</span>
+                </a>
+                <a id="cfg-line-nav" href="https://lin.ee/2deyskIkX" target="_blank" rel="noopener noreferrer" class="bg-[#06C755] hover:bg-[#05b34c] text-white font-bold px-4 sm:px-5 py-2.5 rounded-xl text-sm transition flex items-center gap-2 shadow-md hover:shadow-lg">
+                    <i class="fa-brands fa-line text-lg"></i>
+                    <span>สั่งพิมพ์ผ่าน LINE</span>
+                </a>
+            </div>
         </div>
-        <div class="contact-item">
-          <strong>ที่ตั้งร้าน:</strong>
-          <a id="card-map-link" href="https://goo.gl/maps/UTUp8XueckQg2qAN6" target="_blank" rel="noopener" style="color:#166534; font-weight:600; text-decoration:underline;">
-            เปิดพิกัด Google Maps
-          </a>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="relative bg-gradient-to-br from-tathin-dark via-tathin-green to-emerald-900 text-white overflow-hidden py-14 lg:py-20">
+        <div class="absolute inset-0 opacity-15 pointer-events-none">
+            <div class="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-tathin-yellow filter blur-3xl"></div>
+            <div class="absolute -bottom-24 -right-24 w-96 h-96 rounded-full bg-emerald-400 filter blur-3xl"></div>
         </div>
-      </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+                <!-- Left Column Text Content -->
+                <div class="lg:col-span-7 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-tathin-yellow/40 px-4 py-1.5 rounded-full text-tathin-yellow text-xs sm:text-sm font-medium mb-5">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        <span data-editable="heroBadge">Creative Commerce &amp; Printing Platform</span>
+                    </div>
+
+                    <h1 data-editable="heroTitle" class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight">
+                        "ทธิน" <span class="text-tathin-yellow">พิมพ์คมชัด</span><br> ครบทุกรายละเอียด
+                    </h1>
+
+                    <p data-editable="heroDesc" class="text-emerald-100 text-base sm:text-lg mt-5 max-w-2xl mx-auto lg:mx-0 font-light leading-relaxed">
+                        แพลตฟอร์มงานพิมพ์ครบวงจรสำหรับธุรกิจยุคใหม่ สติกเกอร์ ฉลากสินค้าสั่งทำและแบบสำเร็จรูป นามบัตร โบชัวร์ การ์ด และสื่อสิ่งพิมพ์ทุกชนิด สีสด คมชัด พร้อมส่งทั่วประเทศ
+                    </p>
+
+                    <!-- Feature Badges -->
+                    <div class="flex flex-wrap justify-center lg:justify-start gap-3 mt-7 text-xs sm:text-sm">
+                        <div class="flex items-center gap-2 bg-white/10 px-3.5 py-2 rounded-xl border border-white/15">
+                            <i class="fa-solid fa-droplet text-tathin-yellow"></i>
+                            <span>กันน้ำ 100% ไดคัทคมเป๊ะ</span>
+                        </div>
+                        <div class="flex items-center gap-2 bg-white/10 px-3.5 py-2 rounded-xl border border-white/15">
+                            <i class="fa-solid fa-palette text-tathin-yellow"></i>
+                            <span>สีสดจัดจ้าน ไม่ดรอป</span>
+                        </div>
+                        <div class="flex items-center gap-2 bg-white/10 px-3.5 py-2 rounded-xl border border-white/15">
+                            <i class="fa-solid fa-bolt text-tathin-yellow"></i>
+                            <span>มีแบบสำเร็จรูปพร้อมส่ง</span>
+                        </div>
+                    </div>
+
+                    <!-- Call To Actions -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mt-9">
+                        <a id="cfg-line-hero" href="https://lin.ee/2deyskIkX" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto bg-tathin-yellow hover:bg-yellow-400 text-tathin-dark font-extrabold px-8 py-4 rounded-2xl text-base transition duration-300 shadow-xl hover:shadow-2xl flex items-center justify-center gap-3">
+                            <i class="fa-brands fa-line text-2xl"></i>
+                            <span>สั่งพิมพ์ / ปรึกษาผ่าน LINE OA</span>
+                        </a>
+                        <a href="#gallery" class="w-full sm:w-auto border-2 border-white/30 hover:bg-white/10 text-white font-semibold px-6 py-3.5 rounded-2xl text-base transition flex items-center justify-center gap-2">
+                            <span>ชมตัวอย่างผลงาน</span>
+                            <i class="fa-solid fa-images"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Column QR & Quick Contact Card -->
+                <div class="lg:col-span-5">
+                    <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-2xl text-gray-800 border-4 border-tathin-yellow relative max-w-md mx-auto">
+                        <div class="absolute -top-4 right-6 bg-tathin-dark text-tathin-yellow font-bold text-xs px-4 py-1.5 rounded-full shadow-md uppercase tracking-wider">
+                            LINE Official Account
+                        </div>
+
+                        <div class="text-center">
+                            <h3 class="text-xl font-bold text-tathin-dark">สแกนเพิ่มเพื่อนสั่งงานทันที</h3>
+                            <p class="text-xs text-gray-500 mt-1">ส่งไฟล์งาน • ขอใบเสนอราคา • เลือกแบบสำเร็จรูป</p>
+
+                            <div class="bg-gradient-to-tr from-emerald-50 to-amber-50 p-4 rounded-2xl border border-emerald-100 my-5 inline-block shadow-inner">
+                                <img id="cfg-qr-img" src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&amp;data=https://lin.ee/2deyskIkX" alt="LINE OA QR Code ทธิน" class="w-44 h-44 mx-auto rounded-xl shadow-sm border border-white">
+                            </div>
+
+                            <div class="space-y-1.5 text-sm font-medium">
+                                <div class="flex items-center justify-center gap-2 text-emerald-800">
+                                    <i class="fa-brands fa-line text-xl text-[#06C755]"></i>
+                                    <span>LINE ID: <b>@tathinprint</b></span>
+                                </div>
+                                <div class="flex items-center justify-center gap-2 text-gray-700">
+                                    <i class="fa-solid fa-phone text-tathin-green"></i>
+                                    <span>โทรด่วน: <a href="tel:0646428266" class="font-bold hover:text-tathin-green" target="_blank" rel="noopener noreferrer">064-6428266</a></span>
+                                </div>
+                            </div>
+
+                            <a href="https://lin.ee/2deyskIkX" target="_blank" rel="noopener noreferrer" class="mt-5 w-full bg-[#06C755] hover:bg-[#05b34c] text-white font-bold py-3.5 rounded-xl flex items-center justify-center gap-2 text-sm shadow-md transition">
+                                <i class="fa-brands fa-line text-xl"></i>
+                                <span>คลิกเปิดแชท LINE OA</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4 MAIN PRODUCT CATEGORIES SECTION -->
+    <section id="categories" class="py-16 md:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-12">
+            <span class="text-tathin-green font-bold text-xs sm:text-sm tracking-wider uppercase bg-emerald-100 px-4 py-1.5 rounded-full">Product Categories</span>
+            <h2 data-editable="catSectionTitle" class="text-3xl sm:text-4xl font-bold text-tathin-dark mt-3">4 หมวดหมู่บริการงานพิมพ์หลัก</h2>
+            <p data-editable="catSectionDesc" class="text-gray-600 mt-2 text-sm sm:text-base">เลือกหมวดหมู่ที่ต้องการเพื่อดูตัวอย่างผลงานหรือกดสั่งทำผ่าน LINE OA ได้ทันที</p>
+        </div>
+
+        <div id="categories-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+    </section>
+
+    <!-- PRODUCT SHOWCASE & GALLERY SECTION -->
+    <section id="gallery" class="py-16 md:py-20 bg-white border-y border-emerald-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-10">
+                <span class="bg-tathin-yellow text-tathin-dark font-bold text-xs px-4 py-1.5 rounded-full uppercase tracking-wider">Print Showcase</span>
+                <h2 data-editable="galSectionTitle" class="text-3xl sm:text-4xl font-bold text-tathin-dark mt-3">แกลเลอรี่ตัวอย่างงานพิมพ์</h2>
+                <p data-editable="galSectionDesc" class="text-gray-600 mt-2 text-sm sm:text-base">รวมตัวอย่างผลงานพิมพ์จริง แยกตามหมวดหมู่ย่อย คลิกที่รูปเพื่อดูภาพขยายหรือสั่งทำรายการนั้นๆ</p>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-10" id="gallery-filters">
+                <button onclick="filterGallery('all')" data-filter="all" class="filter-btn active bg-tathin-dark text-tathin-yellow font-bold px-4 sm:px-5 py-2.5 rounded-xl text-xs sm:text-sm shadow-sm transition">
+                    ทั้งหมด (ทุกหมวด)
+                </button>
+                <button onclick="filterGallery('sticker-custom')" data-filter="sticker-custom" class="filter-btn bg-emerald-50 text-tathin-dark hover:bg-emerald-100 font-semibold px-4 sm:px-5 py-2.5 rounded-xl text-xs sm:text-sm transition">
+                    1. สติกเกอร์ &amp; ฉลากสินค้า
+                </button>
+                <button onclick="filterGallery('sticker-ready')" data-filter="sticker-ready" class="filter-btn bg-emerald-50 text-tathin-dark hover:bg-emerald-100 font-semibold px-4 sm:px-5 py-2.5 rounded-xl text-xs sm:text-sm transition">
+                    2. สติกเกอร์ฉลาก (สำเร็จรูป)
+                </button>
+                <button onclick="filterGallery('business-card')" data-filter="business-card" class="filter-btn bg-emerald-50 text-tathin-dark hover:bg-emerald-100 font-semibold px-4 sm:px-5 py-2.5 rounded-xl text-xs sm:text-sm transition">
+                    3. นามบัตร
+                </button>
+                <button onclick="filterGallery('brochure-card')" data-filter="brochure-card" class="filter-btn bg-emerald-50 text-tathin-dark hover:bg-emerald-100 font-semibold px-4 sm:px-5 py-2.5 rounded-xl text-xs sm:text-sm transition">
+                    4. โบชัวร์ การ์ด &amp; สื่อสิ่งพิมพ์
+                </button>
+            </div>
+
+            <!-- Gallery Cards Grid -->
+            <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"></div>
+        </div>
+    </section>
+
+    <!-- INSTANT PRICE CALCULATOR SECTION -->
+    <section id="calculator" class="py-16 md:py-20 bg-tathin-bg">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10">
+                <span class="text-tathin-green font-bold text-xs tracking-wider uppercase bg-emerald-100 px-3.5 py-1 rounded-full">Price Estimation</span>
+                <h2 class="text-3xl font-bold text-tathin-dark mt-2">ประเมินราคาพิมพ์เบื้องต้น</h2>
+                <p class="text-gray-600 text-sm mt-1">คำนวณราคาคร่าวๆ และส่งรายการสั่งพิมพ์เข้า LINE OA ได้ในคลิกเดียว</p>
+            </div>
+
+            <div class="bg-white p-6 sm:p-8 rounded-3xl border border-emerald-100 shadow-xl">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-2">1. เลือกหมวดหมู่สินค้า</label>
+                        <select id="calcType" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm font-medium focus:ring-2 focus:ring-tathin-green outline-none">
+                            <option value="stickerCustom">1. สติกเกอร์ &amp; ฉลากสินค้า (สั่งทำ)</option>
+                            <option value="stickerReady">2. สติกเกอร์ฉลากสินค้า (สำเร็จรูป)</option>
+                            <option value="card">3. นามบัตร</option>
+                            <option value="brochure">4. โบชัวร์ / แผ่นพับ / การ์ด</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-2">2. เลือกรูปแบบ / วัสดุ</label>
+                        <select id="calcMaterial" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm font-medium focus:ring-2 focus:ring-tathin-green outline-none"><option value="0">สติกเกอร์ไดคัทกันน้ำ (PP เงา/ด้าน)</option><option value="1">สติกเกอร์กระดาษไดคัทติดแบรนด์สินค้า</option></select>
+                    </div>
+
+                    <div>
+                        <label id="qtyUnitLabel" class="block text-xs font-bold text-gray-700 uppercase mb-2">3. จำนวน (แผ่น A3)</label>
+                        <input type="number" id="calcQty" value="10" min="1" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm font-medium focus:ring-2 focus:ring-tathin-green outline-none">
+                    </div>
+                </div>
+
+                <div class="mt-8 pt-6 border-t border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-4 bg-emerald-50/80 p-6 rounded-2xl border border-emerald-100">
+                    <div class="text-center sm:text-left">
+                        <div class="text-xs text-emerald-800 font-bold uppercase">สรุปรายการประเมินราคา:</div>
+                        <div class="text-sm text-gray-700 font-medium mt-1">
+                            <span id="summaryType">1. สติกเกอร์ &amp; ฉลากสินค้า (สั่งทำ)</span> • <span id="summaryMaterial">สติกเกอร์ไดคัทกันน้ำ (PP เงา/ด้าน)</span> • <span id="summaryQty">10 แผ่น A3</span>
+                        </div>
+                    </div>
+                    <div class="text-center sm:text-right flex flex-col sm:items-end">
+                        <span class="text-3xl sm:text-4xl font-extrabold text-tathin-green">฿<span id="totalPrice">450</span></span>
+                        <span class="text-xs text-gray-500 font-medium mt-0.5" id="unitPriceText">(เฉลี่ยแผ่น A3ละ 45.00 บาท)</span>
+                    </div>
+                </div>
+
+                <div class="mt-6 text-center">
+                    <button onclick="sendOrderToLine()" class="w-full sm:w-auto bg-[#06C755] hover:bg-[#05b34c] text-white font-bold px-8 py-4 rounded-2xl text-sm sm:text-base transition shadow-lg hover:shadow-xl flex items-center justify-center gap-2.5 mx-auto">
+                        <i class="fa-brands fa-line text-2xl"></i>
+                        <span>ส่งรายการนี้เพื่อสั่งซื้อผ่าน LINE OA</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT & EMBEDDED GOOGLE MAP SECTION -->
+    <section id="contact-map" class="py-16 md:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-12">
+            <span class="text-tathin-green font-bold text-xs sm:text-sm tracking-wider uppercase bg-emerald-100 px-4 py-1.5 rounded-full">Contact &amp; Location</span>
+            <h2 class="text-3xl sm:text-4xl font-bold text-tathin-dark mt-3">ติดต่อสั่งซื้อ &amp; แผนที่ร้าน "ทธิน"</h2>
+            <p class="text-gray-600 mt-2 text-sm sm:text-base">ปรึกษางานพิมพ์ฟรี สั่งออนไลน์ได้ทั่วประเทศ หรือแวะเข้ามาดูตัวอย่างวัสดุที่หน้าร้าน</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+            <div class="lg:col-span-5 bg-tathin-dark text-white p-7 sm:p-8 rounded-3xl shadow-xl border-2 border-tathin-yellow flex flex-col justify-between">
+                <div>
+                    <div class="inline-block bg-tathin-yellow text-tathin-dark font-extrabold text-xs px-3 py-1 rounded-lg mb-3">
+                        TATHIN PRINTING
+                    </div>
+                    <h3 class="text-2xl font-bold text-white">ทธิน พิมพ์คมชัด จัดจ้านทุกรายละเอียด</h3>
+                    <p class="text-emerald-200 text-sm mt-2">ยินดีให้คำแนะนำเรื่องสเปกกระดาษ สติกเกอร์ และการเตรียมไฟล์งานพิมพ์</p>
+
+                    <div class="space-y-5 my-8 text-sm">
+                        <div class="flex items-start gap-3.5">
+                            <div class="w-11 h-11 bg-white/10 rounded-xl flex items-center justify-center text-tathin-yellow text-xl shrink-0">
+                                <i class="fa-brands fa-line"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-emerald-300">สั่งซื้อ &amp; สอบถามผ่าน LINE OA</div>
+                                <a href="https://lin.ee/2deyskIkX" target="_blank" rel="noopener noreferrer" class="font-bold text-base hover:text-tathin-yellow transition break-all">https://lin.ee/2deyskIkX</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3.5">
+                            <div class="w-11 h-11 bg-white/10 rounded-xl flex items-center justify-center text-tathin-yellow text-xl shrink-0">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-emerald-300">โทรศัพท์ติดต่อโดยตรง</div>
+                                <a href="tel:0646428266" class="font-bold text-lg hover:text-tathin-yellow transition" target="_blank" rel="noopener noreferrer">064-6428266</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3.5">
+                            <div class="w-11 h-11 bg-white/10 rounded-xl flex items-center justify-center text-tathin-yellow text-xl shrink-0">
+                                <i class="fa-solid fa-map-location-dot"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-emerald-300">ที่ตั้งร้าน (Google Maps)</div>
+                                <a href="https://goo.gl/maps/UTUp8XueckQg2qAN6" target="_blank" rel="noopener noreferrer" class="font-bold text-base hover:text-tathin-yellow transition underline">เปิดนำทางในแอป Google Maps</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-3">
+                    <a href="https://lin.ee/2deyskIkX" target="_blank" rel="noopener noreferrer" class="w-full bg-tathin-yellow hover:bg-yellow-400 text-tathin-dark font-extrabold py-3.5 rounded-xl text-center flex items-center justify-center gap-2 text-sm shadow-lg transition">
+                        <i class="fa-brands fa-line text-xl"></i>
+                        <span>แอดไลน์สั่งพิมพ์ทันที</span>
+                    </a>
+                    <a href="https://goo.gl/maps/UTUp8XueckQg2qAN6" target="_blank" rel="noopener noreferrer" class="w-full bg-white/10 hover:bg-white/20 text-white font-semibold py-3 rounded-xl text-center flex items-center justify-center gap-2 text-sm transition">
+                        <i class="fa-solid fa-diamond-turn-right text-tathin-yellow"></i>
+                        <span>ดูเส้นทางบน Google Maps</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="lg:col-span-7 bg-white p-3 rounded-3xl shadow-xl border border-emerald-100 flex flex-col">
+                <div class="relative w-full h-80 sm:h-96 lg:h-full min-h-[360px] rounded-2xl overflow-hidden bg-emerald-50">
+                    <iframe id="cfg-map-iframe" src="https://maps.google.com/maps?q=18.7883,98.9853&amp;hl=th&amp;z=15&amp;output=embed" class="w-full h-full border-0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="แผนที่ร้าน ทธิน (Tathin)"></iframe>
+
+                    <div class="absolute bottom-4 left-4 right-4 sm:right-auto bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-lg border border-emerald-100 flex items-center justify-between gap-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-tathin-green text-tathin-yellow rounded-xl flex items-center justify-center font-extrabold text-sm shrink-0">
+                                ทธิน
+                            </div>
+                            <div>
+                                <div class="font-bold text-sm text-tathin-dark">ร้านพิมพ์ ทธิน (Tathin Print)</div>
+                                <div class="text-xs text-gray-500">คลิกปุ่มด้านขวาเพื่อเปิดพิกัดนำทางแม่นยำ</div>
+                            </div>
+                        </div>
+                        <a href="https://goo.gl/maps/UTUp8XueckQg2qAN6" target="_blank" rel="noopener noreferrer" class="bg-tathin-green hover:bg-tathin-dark text-white text-xs font-bold px-3.5 py-2.5 rounded-xl shrink-0 transition flex items-center gap-1.5">
+                            <i class="fa-solid fa-location-arrow text-tathin-yellow"></i>
+                            <span>นำทาง</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-tathin-dark text-white border-t border-tathin-light/20 py-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <span class="bg-tathin-yellow text-tathin-dark font-extrabold px-2.5 py-1 rounded-lg text-lg">ทธิน</span>
+                <span class="text-xs sm:text-sm text-emerald-200">Tathin Creative Commerce &amp; Printing Platform</span>
+            </div>
+            <p class="text-xs text-emerald-400 text-center sm:text-right">
+                © 2026 ทธิน (Tathin) • โทร. 064-6428266 • "พิมพ์คมชัด จัดจ้านทุกรายละเอียด"
+            </p>
+        </div>
+    </footer>
+
+    <!-- IMAGE LIGHTBOX MODAL (สำหรับดูรูปขยายใหญ่) -->
+    <div id="imageModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 hidden" onclick="closeModal()">
+        <div class="bg-white rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl border-2 border-tathin-yellow" onclick="event.stopPropagation()">
+            <div class="relative bg-gray-100">
+                <img id="modalImg" src="" alt="ตัวอย่างงานพิมพ์" class="w-full max-h-[65vh] object-contain mx-auto">
+                <button onclick="closeModal()" class="absolute top-3 right-3 w-10 h-10 bg-tathin-dark/80 hover:bg-tathin-dark text-white rounded-full flex items-center justify-center text-lg transition">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <div>
+                    <span id="modalBadge" class="text-xs font-bold text-tathin-green bg-emerald-100 px-3 py-1 rounded-full"></span>
+                    <h3 id="modalTitle" class="text-xl font-bold text-tathin-dark mt-2"></h3>
+                    <p id="modalDesc" class="text-sm text-gray-600 mt-1"></p>
+                </div>
+                <a id="modalLineBtn" href="https://lin.ee/2deyskIkX" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto bg-[#06C755] hover:bg-[#05b34c] text-white font-bold px-6 py-3 rounded-xl text-sm flex items-center justify-center gap-2 shrink-0 shadow-md transition">
+                    <i class="fa-brands fa-line text-xl"></i>
+                    <span>สั่งทำแบบนี้</span>
+                </a>
+            </div>
+        </div>
     </div>
-  </section>
 
-  <section id="products" class="section">
-    <div class="container">
-      <div class="section-header">
-        <div>
-          <h2 class="section-title">หมวดหมู่สินค้าและตัวอย่างงานพิมพ์</h2>
-          <p class="section-desc">จัดการรายการและลิงก์ URL รูปภาพแยกในไฟล์ products-data.js แก้ไขง่ายและโหลดไว</p>
-        </div>
-      </div>
+    <!-- MODAL แก้ไข / เพิ่มรูปภาพในแกลเลอรี (อัปโหลดภาพขึ้น GitHub pic/ โดยไม่ฝัง Base64) -->
+    
 
-      <div id="filter-bar" class="filter-bar"></div>
-      <div id="product-grid" class="product-grid"></div>
-    </div>
-  </section>
+    <!-- =========================================================================
+         ส่วนข้อมูลหลักของหน้าเว็บ (SITE_CONFIG)
+         ========================================================================= -->
+    <script id="site-config-script">
+        let SITE_CONFIG = {
+          "brandName": "ทธิน (Tathin)",
+          "slogan": "ทธิน พิมพ์คมชัด จัดจ้านทุกรายละเอียด",
+          "lineUrl": "https://lin.ee/2deyskIkX",
+          "phoneDisplay": "064-6428266",
+          "phoneHref": "tel:0646428266",
+          "googleMapUrl": "https://goo.gl/maps/UTUp8XueckQg2qAN6",
+          "googleMapEmbedSrc": "https://maps.google.com/maps?q=18.7883,98.9853&hl=th&z=15&output=embed",
+          "categories": [
+                    {
+                              "id": "sticker-custom",
+                              "number": "หมวดที่ 1",
+                              "title": "สติกเกอร์ ฉลากสินค้า",
+                              "icon": "fa-tags",
+                              "description": "พิมพ์ฉลากแบรนด์ของตัวเอง ไดคัทตามทรง กันน้ำ 100% สีสดคมชัดติดแน่นทนนาน",
+                              "subItems": [
+                                        "สติกเกอร์ไดคัทกันน้ำ (PP) ขาวมุก ขาวด้าน ใส",
+                                        "สติกเกอร์กระดาษไดคัท หมึกกันน้ำ ติดแบรนด์สินค้า"
+                              ],
+                              "badgeText": "เริ่มต้นเพียง A3 ละ 35 บาท",
+                              "buttonText": "สั่งพิมพ์สติกเกอร์"
+                    },
+                    {
+                              "id": "sticker-ready",
+                              "number": "หมวดที่ 2",
+                              "title": "สติกเกอร์ ฉลากสินค้า (แบบสำเร็จรูป)",
+                              "icon": "fa-layer-group",
+                              "description": "สติกเกอร์สำเร็จรูปพร้อมส่งทันที ไม่ต้องรอออกแบบ มีให้เลือกหลายขนาดและดีไซน์",
+                              "subItems": [
+                                        "สติกเกอร์ไดคัทกันน้ำ (สำเร็จรูป) PP",
+                                        "สติกเกอร์กระดาษไดคัท หมึกกันน้ำ ติดแบรนด์สินค้า (สำเร็จรูป)"
+                              ],
+                              "badgeText": "พร้อมจัดส่งทันที ไม่ต้องรอผลิต",
+                              "buttonText": "ดูแบบสำเร็จรูป / สั่งซื้อ"
+                    },
+                    {
+                              "id": "business-card",
+                              "number": "หมวดที่ 3",
+                              "title": "นามบัตร",
+                              "icon": "fa-address-card",
+                              "description": "นามบัตรธุรกิจคุณภาพ กระดาษหนาอยู่ทรง พิมพ์คมชัดทั้งหน้า-หลัง",
+                              "subItems": [
+                                        "นามบัตรกระดาษอาร์ตมัน / อาร์ตการ์ด",
+                                        "พิมพ์ 1 หน้า หรือ 2 หน้า สีสันจัดจ้าน"
+                              ],
+                              "badgeText": "เริ่มต้นเพียง ใบละ 1 บาท",
+                              "buttonText": "สั่งทำนามบัตร"
+                    },
+                    {
+                              "id": "brochure-card",
+                              "number": "หมวดที่ 4",
+                              "title": "โบชัวร์ การ์ด & สื่อสิ่งพิมพ์อื่นๆ",
+                              "icon": "fa-book-open",
+                              "description": "แผ่นพับ โบชัวร์โปรโมชั่น การ์ดอวยพร และสื่อสิ่งพิมพ์",
+                              "subItems": [
+                                        "แผ่นพับ 3 ตอน (Tri-fold Brochure)",
+                                        "โบชัวร์สินค้าสีสันสดใส",
+                                        "การ์ดอวยพร & สื่อสิ่งพิมพ์อื่นๆ"
+                              ],
+                              "badgeText": "ยิ่งสั่งเยอะ ราคายิ่งประหยัด",
+                              "buttonText": "สั่งพิมพ์โบชัวร์ / การ์ด"
+                    }
+          ],
+          "galleryItems": [
+                    {
+                              "category": "sticker-custom",
+                              "categoryLabel": "1. สติกเกอร์ & ฉลากสินค้า",
+                              "title": "สติกเกอร์ไดคัทกันน้ำ (PP / PVC)",
+                              "desc": "ทนน้ำ แช่เย็นได้ 100% เหมาะสำหรับขวดน้ำ เครื่องดื่ม เครื่องสำอาง ไดคัทตามรูปทรงโลโก้",
+                              "image": "https://placehold.co/600x400/045B36/FFD700?text=Upload+Image+to+GitHub+pic",
+                              "tag": "กันน้ำ 100%"
+                    },
+                    {
+                              "category": "sticker-custom",
+                              "categoryLabel": "1. สติกเกอร์ & ฉลากสินค้า",
+                              "title": "สติกเกอร์กระดาษไดคัทติดแบรนด์สินค้า",
+                              "desc": "สติกเกอร์กระดาษขาวมันและกระดาษคราฟท์ พิมพ์คมชัด สีสด สำหรับติดกล่องขนม เบเกอรี่ และบรรจุภัณฑ์",
+                              "image": "https://placehold.co/600x400/045B36/FFD700?text=Upload+Image+to+GitHub+pic",
+                              "tag": "ยอดนิยม"
+                    },
+                    {
+                              "category": "sticker-ready",
+                              "categoryLabel": "2. สติกเกอร์ฉลาก (แบบสำเร็จรูป)",
+                              "title": "สติกเกอร์ไดคัทกันน้ำ (แบบสำเร็จรูป)",
+                              "desc": "สติกเกอร์ข้อความสำเร็จรูป เช่น Handmade, Thank You, ระบุรสชาติ กันน้ำพร้อมแปะทันที",
+                              "image": "https://placehold.co/600x400/045B36/FFD700?text=Upload+Image+to+GitHub+pic",
+                              "tag": "พร้อมส่ง"
+                    },
+                    {
+                              "category": "sticker-ready",
+                              "categoryLabel": "2. สติกเกอร์ฉลาก (แบบสำเร็จรูป)",
+                              "title": "สติกเกอร์กระดาษไดคัทติดแบรนด์สินค้า (สำเร็จรูป)",
+                              "desc": "ฉลากสำเร็จรูปดีไซน์มินิมอลและสีสันสดใส ช่วยเพิ่มมูลค่าให้สินค้าหน้าร้านได้ทันที",
+                              "image": "https://placehold.co/600x400/045B36/FFD700?text=Upload+Image+to+GitHub+pic",
+                              "tag": "ประหยัดเวลา"
+                    },
+                    {
+                              "category": "business-card",
+                              "categoryLabel": "3. นามบัตร",
+                              "title": "นามบัตร (Business Card)",
+                              "desc": "กระดาษอาร์ตการ์ด 260 แกรม พิมพ์คมชัดทุกรายละเอียดตัวอักษร เพิ่มความน่าเชื่อถือ",
+                              "image": "https://placehold.co/600x400/045B36/FFD700?text=Upload+Image+to+GitHub+pic",
+                              "tag": "งานเนี๊ยบ"
+                    },
+                    {
+                              "category": "brochure-card",
+                              "categoryLabel": "4. โบชัวร์ การ์ด & สื่อสิ่งพิมพ์",
+                              "title": "แผ่นพับ 3 ตอน (Tri-fold Brochure)",
+                              "desc": "พับคมเรียบเนียน ไม่แตกขอบ กระดาษอาร์ตมัน/ด้าน เหมาะสำหรับแนะนำบริการ เมนู และโปรโมชั่น",
+                              "image": "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?auto=format&fit=crop&w=800&q=80",
+                              "tag": "พับคมสวย"
+                    },
+                    {
+                              "category": "brochure-card",
+                              "categoryLabel": "4. โบชัวร์ การ์ด & สื่อสิ่งพิมพ์",
+                              "title": "โบชัวร์สินค้าสีสันสดใส (Colorful Flyer)",
+                              "desc": "พิมพ์ระบบดิจิทัลความละเอียดสูง สีสดจัดจ้าน ดึงดูดสายตาลูกค้า ขนาด A4 / A5",
+                              "image": "https://images.unsplash.com/photo-1572044162444-ad60f128bdea?auto=format&fit=crop&w=800&q=80",
+                              "tag": "สีจัดจ้าน"
+                    },
+                    {
+                              "category": "brochure-card",
+                              "categoryLabel": "4. โบชัวร์ การ์ด & สื่อสิ่งพิมพ์",
+                              "title": "การ์ดอวยพร & สื่อสิ่งพิมพ์อื่นๆ",
+                              "desc": "การ์ดขอบคุณลูกค้า (Thank You Card) การ์ดอวยพรเทศกาล โปสเตอร์ และป้ายเมนูอาหาร",
+                              "image": "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=800&q=80",
+                              "tag": "สั่งทำตามแบบ"
+                    }
+          ]
+};
 
-  <section id="location" class="section" style="padding-top: 0;">
-    <div class="container">
-      <div class="section-header">
-        <div>
-          <h2 class="section-title">ที่ตั้งร้านบน Google Maps</h2>
-          <p class="section-desc">แวะเข้ามาสอบถามงานพิมพ์หรือรับงานได้ที่หน้าร้าน</p>
-        </div>
-      </div>
+        let currentFilter = 'all';
 
-      <div class="map-box">
-        <!-- สามารถเปลี่ยน src เป็นลิงก์ Embed ของ Google Maps พิกัดร้านได้โดยตรง -->
-        <iframe
-          class="map-frame"
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          src="https://maps.google.com/maps?q=18.7883,98.9853&hl=th&z=15&output=embed"
-          title="แผนที่ร้าน ทธิน (Tathin)">
-        </iframe>
-        <div class="map-footer">
-          <span>ลิงก์ที่ตั้ง: <strong id="map-text-link">https://goo.gl/maps/UTUp8XueckQg2qAN6</strong></span>
-          <a id="map-open-btn" href="https://goo.gl/maps/UTUp8XueckQg2qAN6" target="_blank" rel="noopener" class="btn btn-line">เปิดใน Google Maps</a>
-        </div>
-      </div>
-    </div>
-  </section>
+        // =========================================================================
+        // ระบบแสดงผลหมวดหมู่สินค้า แกลเลอรี Lightbox และคำนวณราคา (ใช้ทั้งหน้าจริงและ Admin)
+        // =========================================================================
+        function renderCategories() {
+            const grid = document.getElementById('categories-grid');
+            if (!grid) return;
+            const adminActive = typeof isEditMode !== 'undefined' && isEditMode;
 
-  <footer>
-    <div class="container">
-      <p><span>ทธิน (Tathin)</span> — "ทธิน พิมพ์คมชัด จัดจ้านทุกรายละเอียด" | โทร. 064-6428266</p>
-    </div>
-  </footer>
+            grid.innerHTML = SITE_CONFIG.categories.map((cat, idx) => `
+                <div class="bg-white rounded-3xl p-6 border border-emerald-100 shadow-sm hover:shadow-xl transition duration-300 flex flex-col justify-between group">
+                    <div>
+                        <div class="flex items-center justify-between mb-5">
+                            <div class="w-14 h-14 bg-emerald-100 text-tathin-green group-hover:bg-tathin-green group-hover:text-tathin-yellow rounded-2xl flex items-center justify-center text-2xl transition duration-300">
+                                <i class="fa-solid ${cat.icon}"></i>
+                            </div>
+                            <span class="text-xs font-bold text-tathin-green bg-emerald-50 px-3 py-1 rounded-full">${cat.number}</span>
+                        </div>
+                        <h3 data-editable="cat-title-${idx}" ${adminActive ? `contenteditable="true" onblur="SITE_CONFIG.categories[${idx}].title = this.innerText; persistDraftToLocalStorage();"` : ''} class="text-xl font-bold text-tathin-dark mb-2 leading-snug">${cat.title}</h3>
+                        <p data-editable="cat-desc-${idx}" ${adminActive ? `contenteditable="true" onblur="SITE_CONFIG.categories[${idx}].description = this.innerText; persistDraftToLocalStorage();"` : ''} class="text-gray-600 text-sm mb-4 leading-relaxed">${cat.description}</p>
+                        <ul class="text-xs text-gray-600 space-y-2 mb-6">
+                            ${cat.subItems.map((sub, sIdx) => `
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-circle-check text-tathin-green mt-0.5"></i>
+                                    <span data-editable="cat-sub-${idx}-${sIdx}" ${adminActive ? `contenteditable="true" onblur="SITE_CONFIG.categories[${idx}].subItems[${sIdx}] = this.innerText; persistDraftToLocalStorage();"` : ''}>${sub}</span>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                    <div>
+                        <div data-editable="cat-badge-${idx}" ${adminActive ? `contenteditable="true" onblur="SITE_CONFIG.categories[${idx}].badgeText = this.innerText; persistDraftToLocalStorage();"` : ''} class="text-xs font-semibold text-emerald-800 bg-emerald-50 p-2.5 rounded-xl mb-3 text-center border border-emerald-100">
+                            ${cat.badgeText}
+                        </div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <a href="#gallery" onclick="filterGallery('${cat.id}')" class="border border-emerald-200 hover:bg-emerald-50 text-tathin-dark font-semibold py-2.5 rounded-xl text-xs transition flex items-center justify-center gap-1.5">
+                                <i class="fa-solid fa-eye text-tathin-green"></i>
+                                <span>ดูตัวอย่าง</span>
+                            </a>
+                            <a href="${SITE_CONFIG.lineUrl}" target="_blank" rel="noopener noreferrer" class="bg-tathin-dark hover:bg-tathin-green text-white font-semibold py-2.5 rounded-xl text-xs transition flex items-center justify-center gap-1.5">
+                                <i class="fa-brands fa-line text-sm text-tathin-yellow"></i>
+                                <span>สั่งพิมพ์</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            if (typeof applyEditableState === 'function') applyEditableState();
+        }
 
-  <!-- โหลดไฟล์ข้อมูลแยกจาก index.html -->
-  <script src="products-data.js"></script>
-  <script>
-    (function () {
-      const data = window.TATHIN_DATA;
-      if (!data) return;
+        function renderGallery(filterKey = 'all') {
+            currentFilter = filterKey;
+            const grid = document.getElementById('gallery-grid');
+            if (!grid) return;
+            const adminActive = typeof isEditMode !== 'undefined' && isEditMode;
 
-      let activeCategory = "all";
+            const itemsWithIndex = SITE_CONFIG.galleryItems
+                .map((item, originalIndex) => ({ ...item, originalIndex }))
+                .filter(item => filterKey === 'all' || item.category === filterKey);
 
-      // อัปเดตข้อมูลร้านและลิงก์
-      document.getElementById("shop-brand").textContent = `${data.shop.name} · ${data.shop.nameEn}`;
-      document.getElementById("shop-slogan").textContent = data.shop.slogan;
-      document.getElementById("hero-slogan-sub").textContent = `${data.shop.slogan} — รองรับทั้งการสั่งทำเฉพาะแบรนด์และแบบสำเร็จรูป`;
-      document.getElementById("card-shop-name").textContent = `${data.shop.name} (${data.shop.nameEn})`;
-      document.getElementById("card-phone").textContent = data.shop.phone;
-      document.getElementById("tel-link").textContent = `โทร. ${data.shop.phone}`;
-      document.getElementById("tel-link").href = `tel:${data.shop.phone.replace(/[^0-9+]/g, "")}`;
+            grid.innerHTML = itemsWithIndex.map(item => `
+                <div class="gallery-card bg-tathin-bg rounded-3xl overflow-hidden border border-emerald-100 shadow-sm hover:shadow-xl transition duration-300 flex flex-col justify-between relative">
+                    ${adminActive ? `
+                    <div data-admin-only="true" class="flex edit-controls absolute top-3 right-3 z-20 gap-1.5">
+                        <button onclick="openEditGalleryModal(${item.originalIndex})" class="bg-tathin-yellow hover:bg-yellow-400 text-tathin-dark font-bold px-3 py-1.5 rounded-xl text-xs shadow-lg flex items-center gap-1">
+                            <i class="fa-solid fa-image"></i> เปลี่ยนรูป/แก้ไข
+                        </button>
+                        <button onclick="deleteGalleryItem(${item.originalIndex})" class="bg-red-600 hover:bg-red-700 text-white font-bold px-2.5 py-1.5 rounded-xl text-xs shadow-lg" title="ลบรายการนี้">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>` : ''}
 
-      ["line-top-btn", "line-hero-btn", "card-line-link"].forEach((id) => {
-        const el = document.getElementById(id);
-        if (el) el.href = data.shop.lineUrl;
-      });
+                    <div>
+                        <div class="relative h-56 overflow-hidden bg-emerald-100 cursor-pointer" onclick="openModal(${item.originalIndex})">
+                            <img src="${item.image}" alt="${item.title}" class="gallery-img w-full h-full object-cover transition duration-500" onerror="this.src='https://placehold.co/600x400/045B36/FFD700?text=Tathin+Print'">
+                            <span class="absolute top-3 left-3 bg-tathin-dark/90 backdrop-blur-sm text-tathin-yellow text-[11px] font-bold px-3 py-1 rounded-full shadow">
+                                ${item.categoryLabel}
+                            </span>
+                            <span class="absolute bottom-3 right-3 bg-tathin-yellow text-tathin-dark text-[11px] font-extrabold px-2.5 py-1 rounded-lg shadow">
+                                ${item.tag}
+                            </span>
+                        </div>
+                        <div class="p-5">
+                            <h3 data-editable="gal-title-${item.originalIndex}" ${adminActive ? `contenteditable="true" onblur="SITE_CONFIG.galleryItems[${item.originalIndex}].title = this.innerText; persistDraftToLocalStorage();"` : ''} class="text-lg font-bold text-tathin-dark">${item.title}</h3>
+                            <p data-editable="gal-desc-${item.originalIndex}" ${adminActive ? `contenteditable="true" onblur="SITE_CONFIG.galleryItems[${item.originalIndex}].desc = this.innerText; persistDraftToLocalStorage();"` : ''} class="text-xs sm:text-sm text-gray-600 mt-1.5 leading-relaxed">${item.desc}</p>
+                        </div>
+                    </div>
+                    <div class="px-5 pb-5 pt-2 flex items-center gap-2">
+                        <button onclick="openModal(${item.originalIndex})" class="flex-1 bg-white hover:bg-emerald-50 text-tathin-dark border border-emerald-200 font-semibold py-2.5 rounded-xl text-xs transition flex items-center justify-center gap-1.5">
+                            <i class="fa-solid fa-magnifying-glass-plus text-tathin-green"></i>
+                            <span>ขยายดูภาพ</span>
+                        </button>
+                        <a href="${SITE_CONFIG.lineUrl}?text=${encodeURIComponent('สนใจสั่งพิมพ์รายการ: ' + item.title)}" target="_blank" rel="noopener noreferrer" class="flex-1 bg-[#06C755] hover:bg-[#05b34c] text-white font-bold py-2.5 rounded-xl text-xs transition flex items-center justify-center gap-1.5 shadow-sm">
+                            <i class="fa-brands fa-line text-base"></i>
+                            <span>สั่งทำรายการนี้</span>
+                        </a>
+                    </div>
+                </div>
+            `).join('');
+            if (typeof applyEditableState === 'function') applyEditableState();
+        }
 
-      ["card-map-link", "map-open-btn"].forEach((id) => {
-        const el = document.getElementById(id);
-        if (el) el.href = data.shop.mapUrl;
-      });
-      document.getElementById("map-text-link").textContent = data.shop.mapUrl;
+        function filterGallery(filterKey) {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                if (btn.getAttribute('data-filter') === filterKey) {
+                    btn.className = "filter-btn active bg-tathin-dark text-tathin-yellow font-bold px-4 sm:px-5 py-2.5 rounded-xl text-xs sm:text-sm shadow-sm transition";
+                } else {
+                    btn.className = "filter-btn bg-emerald-50 text-tathin-dark hover:bg-emerald-100 font-semibold px-4 sm:px-5 py-2.5 rounded-xl text-xs sm:text-sm transition";
+                }
+            });
+            renderGallery(filterKey);
+        }
 
-      function renderFilters() {
-        const filterBar = document.getElementById("filter-bar");
-        filterBar.innerHTML = "";
+        function openModal(itemIndex) {
+            const item = SITE_CONFIG.galleryItems[itemIndex];
+            if (!item) return;
+            document.getElementById('modalImg').src = item.image;
+            document.getElementById('modalBadge').innerText = item.categoryLabel;
+            document.getElementById('modalTitle').innerText = item.title;
+            document.getElementById('modalDesc').innerText = item.desc;
+            document.getElementById('modalLineBtn').href = `${SITE_CONFIG.lineUrl}?text=${encodeURIComponent('สนใจสั่งพิมพ์: ' + item.title)}`;
+            document.getElementById('imageModal').classList.remove('hidden');
+        }
 
-        data.categories.forEach((cat) => {
-          const btn = document.createElement("button");
-          btn.type = "button";
-          btn.className = `filter-btn ${activeCategory === cat.id ? "active" : ""}`;
-          btn.textContent = cat.label;
-          btn.addEventListener("click", () => {
-            activeCategory = cat.id;
-            renderFilters();
-            renderProducts();
-          });
-          filterBar.appendChild(btn);
+        function closeModal() {
+            document.getElementById('imageModal').classList.add('hidden');
+        }
+
+        const pricingData = {
+            stickerCustom: {
+                name: "1. สติกเกอร์ & ฉลากสินค้า (สั่งทำ)",
+                unit: "แผ่น A3",
+                materials: [
+                    { name: "สติกเกอร์ไดคัทกันน้ำ (PP เงา/ด้าน)", basePrice: 45 },
+                    { name: "สติกเกอร์กระดาษไดคัทติดแบรนด์สินค้า", basePrice: 35 }
+                ]
+            },
+            stickerReady: {
+                name: "2. สติกเกอร์ฉลาก (แบบสำเร็จรูป)",
+                unit: "ชุด / แผ่น",
+                materials: [
+                    { name: "สติกเกอร์ไดคัทกันน้ำ (สำเร็จรูป)", basePrice: 35 },
+                    { name: "สติกเกอร์กระดาษไดคัท (สำเร็จรูป)", basePrice: 25 }
+                ]
+            },
+            card: {
+                name: "3. นามบัตร",
+                unit: "กล่อง (100 ใบ)",
+                materials: [
+                    { name: "นามบัตรอาร์ตการ์ด 260g (พิมพ์ 1 หน้า)", basePrice: 120 },
+                    { name: "นามบัตรอาร์ตการ์ด 260g (พิมพ์ 2 หน้า)", basePrice: 160 }
+                ]
+            },
+            brochure: {
+                name: "4. โบชัวร์ การ์ด & สื่อสิ่งพิมพ์",
+                unit: "แผ่น",
+                materials: [
+                    { name: "แผ่นพับ 3 ตอน (อาร์ตมัน 130g)", basePrice: 12 },
+                    { name: "โบชัวร์สินค้าสีสันสดใส A4/A5", basePrice: 10 },
+                    { name: "การ์ดอวยพร / การ์ดขอบคุณ", basePrice: 15 }
+                ]
+            }
+        };
+
+        function updateMaterialOptions() {
+            const typeSelect = document.getElementById('calcType');
+            const materialSelect = document.getElementById('calcMaterial');
+            const unitLabel = document.getElementById('qtyUnitLabel');
+            if (!typeSelect || !materialSelect) return;
+
+            const selectedType = typeSelect.value || 'stickerCustom';
+            const item = pricingData[selectedType];
+            if (!item) return;
+
+            if (unitLabel) unitLabel.innerText = `3. จำนวน (${item.unit})`;
+            materialSelect.innerHTML = '';
+            item.materials.forEach((mat, idx) => {
+                const opt = document.createElement('option');
+                opt.value = idx;
+                opt.innerText = mat.name;
+                materialSelect.appendChild(opt);
+            });
+        }
+
+        function calculatePrice() {
+            const typeSelect = document.getElementById('calcType');
+            const matSelect = document.getElementById('calcMaterial');
+            const qtyInput = document.getElementById('calcQty');
+            if (!typeSelect || !matSelect || !qtyInput) return;
+
+            const typeKey = typeSelect.value || 'stickerCustom';
+            const matIdx = parseInt(matSelect.value) || 0;
+            let qty = parseInt(qtyInput.value) || 1;
+            if (qty < 1) qty = 1;
+
+            const product = pricingData[typeKey];
+            if (!product) return;
+            const matObj = product.materials[matIdx] || product.materials[0];
+
+            let multiplier = 1.0;
+            if (qty >= 100) multiplier = 0.75;
+            else if (qty >= 50) multiplier = 0.85;
+            else if (qty >= 20) multiplier = 0.90;
+
+            const unitPrice = matObj.basePrice * multiplier;
+            const totalPrice = Math.round(unitPrice * qty);
+
+            document.getElementById('summaryType').innerText = product.name;
+            document.getElementById('summaryMaterial').innerText = matObj.name;
+            document.getElementById('summaryQty').innerText = `${qty} ${product.unit}`;
+            document.getElementById('totalPrice').innerText = totalPrice.toLocaleString();
+            document.getElementById('unitPriceText').innerText = `(เฉลี่ย${product.unit}ละ ${(totalPrice / qty).toFixed(2)} บาท)`;
+        }
+
+        function sendOrderToLine() {
+            const type = document.getElementById('summaryType')?.innerText || '';
+            const mat = document.getElementById('summaryMaterial')?.innerText || '';
+            const qty = document.getElementById('summaryQty')?.innerText || '';
+            const price = document.getElementById('totalPrice')?.innerText || '';
+
+            const message = `สวัสดีครับ/ค่ะ ต้องการสั่งพิมพ์กับ ทธิน (Tathin):\n- หมวดหมู่: ${type}\n- รูปแบบ/วัสดุ: ${mat}\n- จำนวน: ${qty}\n- ราคาประเมินเบื้องต้น: ฿${price}`;
+            window.open(`${SITE_CONFIG.lineUrl}?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer');
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            renderCategories();
+            renderGallery('all');
+
+            const typeSelect = document.getElementById('calcType');
+            const matSelect = document.getElementById('calcMaterial');
+            const qtyInput = document.getElementById('calcQty');
+
+            if (typeSelect) {
+                updateMaterialOptions();
+                typeSelect.addEventListener('change', function() {
+                    updateMaterialOptions();
+                    calculatePrice();
+                });
+            }
+            if (matSelect) matSelect.addEventListener('change', calculatePrice);
+            if (qtyInput) qtyInput.addEventListener('input', calculatePrice);
+            calculatePrice();
         });
-      }
+    </script>
 
-      function renderProducts() {
-        const grid = document.getElementById("product-grid");
-        grid.innerHTML = "";
+    <!-- =========================================================================
+         สคริปต์เฉพาะโหมด Admin บนคอมพิวเตอร์ (เชื่อมต่อ GitHub API ผ่าน Token)
+         ส่วนนี้จะไม่ถูกบันทึกลงในไฟล์ index.html ที่ส่งขึ้น GitHub
+         ========================================================================= -->
+    
 
-        const filtered = activeCategory === "all"
-          ? data.products
-          : data.products.filter((item) => item.category === activeCategory);
 
-        filtered.forEach((item) => {
-          const card = document.createElement("article");
-          card.className = "product-card";
-
-          const imgWrap = document.createElement("div");
-          imgWrap.className = "product-img-wrap";
-
-          const img = document.createElement("img");
-          img.src = item.imageUrl;
-          img.alt = item.alt || item.title;
-          img.loading = "lazy";
-          imgWrap.appendChild(img);
-
-          const body = document.createElement("div");
-          body.className = "product-body";
-
-          const pill = document.createElement("span");
-          pill.className = "cat-pill";
-          pill.textContent = item.categoryLabel;
-
-          const title = document.createElement("h3");
-          title.className = "product-title";
-          title.textContent = item.title;
-
-          const sub = document.createElement("p");
-          sub.className = "product-sub";
-          sub.textContent = item.subtitle;
-
-          const footer = document.createElement("div");
-          footer.className = "product-footer";
-
-          const price = document.createElement("span");
-          price.className = "price-tag";
-          price.textContent = item.priceText;
-
-          const orderBtn = document.createElement("a");
-          orderBtn.className = "btn-order-sm";
-          orderBtn.href = data.shop.lineUrl;
-          orderBtn.target = "_blank";
-          orderBtn.rel = "noopener";
-          orderBtn.textContent = "สั่งซื้อผ่าน LINE OA";
-
-          footer.appendChild(price);
-          footer.appendChild(orderBtn);
-
-          body.appendChild(pill);
-          body.appendChild(title);
-          body.appendChild(sub);
-          body.appendChild(footer);
-
-          card.appendChild(imgWrap);
-          card.appendChild(body);
-          grid.appendChild(card);
-        });
-      }
-
-      renderFilters();
-      renderProducts();
-    })();
-  </script>
-</body>
-</html>
+</body></html>
