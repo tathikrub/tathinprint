@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ทธิน (Tathin) — พิมพ์คมชัด จัดจ้านทุกรายละเอียด</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green-dark: #0c3b20;
+      --green-mid: #166534;
+      --green-bright: #22c55e;
+      --green-soft: #f0fdf4;
+      --yellow-main: #facc15;
+      --yellow-hover: #eab308;
+      --yellow-soft: #fefce8;
+      --white: #ffffff;
+      --bg-page: #f8faf9;
+      --text-main: #111827;
+      --text-muted: #4b5563;
+      --border-light: #e5e7eb;
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --radius-sm: 10px;
+      --shadow-card: 0 10px 25px -5px rgba(12, 59, 32, 0.08), 0 4px 10px -2px rgba(12, 59, 32, 0.04);
+      --shadow-hover: 0 20px 35px -8px rgba(12, 59, 32, 0.15);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', 'Noto Sans Thai', sans-serif;
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Navbar */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(12, 59, 32, 0.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 3px solid var(--yellow-main);
+      color: var(--white);
+    }
+
+    .nav-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 74px;
+      gap: 16px;
+      flex-wrap: wrap;
+      padding: 10px 0;
+    }
+
+    .brand-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .brand-logo {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      object-fit: cover;
+      border: 2px solid var(--yellow-main);
+      background: var(--white);
+    }
+
+    .brand-title {
+      font-size: 1.3rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--white);
+      line-height: 1.15;
+    }
+
+    .brand-title span {
+      color: var(--yellow-main);
+    }
+
+    .brand-sub {
+      font-size: 0.78rem;
+      color: #d1fae5;
+      font-weight: 400;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: var(--white);
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 500;
+      padding: 8px 14px;
+      border-radius: 999px;
+      transition: all 0.2s ease;
+    }
+
+    nav a:hover {
+      background: rgba(250, 204, 21, 0.16);
+      color: var(--yellow-main);
+    }
+
+    .btn-line-nav {
+      background: var(--yellow-main);
+      color: var(--green-dark) !important;
+      font-weight: 700 !important;
+      box-shadow: 0 4px 12px rgba(250, 204, 21, 0.3);
+    }
+
+    .btn-line-nav:hover {
+      background: var(--yellow-hover) !important;
+      transform: translateY(-1px);
+    }
+
+    /* Hero Banner */
+    .hero {
+      background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-mid) 62%, #15803d 100%);
+      color: var(--white);
+      padding: 56px 0 64px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -90px;
+      bottom: -90px;
+      width: 340px;
+      height: 340px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(250, 204, 21, 0.22) 0%, rgba(250, 204, 21, 0) 70%);
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 36px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(250, 204, 21, 0.16);
+      border: 1px solid rgba(250, 204, 21, 0.5);
+      color: var(--yellow-main);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 4.2vw, 3.1rem);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 14px;
+    }
+
+    .hero h1 .highlight {
+      color: var(--yellow-main);
+      display: block;
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      color: #ecfdf5;
+      margin-bottom: 24px;
+      max-width: 560px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--yellow-main);
+      color: var(--green-dark);
+      font-weight: 700;
+      text-decoration: none;
+      padding: 13px 22px;
+      border-radius: var(--radius-sm);
+      border: none;
+      cursor: pointer;
+      font-size: 0.98rem;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary:hover {
+      background: var(--yellow-hover);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--white);
+      font-weight: 600;
+      text-decoration: none;
+      padding: 13px 20px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      cursor: pointer;
+      font-size: 0.98rem;
+      transition: all 0.2s ease;
+    }
+
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    .hero-meta {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      font-size: 0.92rem;
+      color: #d1fae5;
+    }
+
+    .hero-card {
+      background: var(--white);
+      color: var(--text-main);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.22);
+      border: 3px solid var(--yellow-main);
+    }
+
+    .hero-banner-img {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      border-radius: var(--radius-md);
+      display: block;
+      margin-bottom: 14px;
+    }
+
+    .hero-qr-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      background: var(--green-soft);
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid #bbf7d0;
+    }
+
+    .hero-qr-img {
+      width: 74px;
+      height: 74px;
+      object-fit: contain;
+      background: var(--white);
+      border-radius: 8px;
+      padding: 4px;
+      border: 1px solid var(--border-light);
+      flex-shrink: 0;
+    }
+
+    /* Sections */
+    section {
+      padding: 64px 0;
+    }
+
+    .section-head {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 38px;
+    }
+
+    .section-tag {
+      display: inline-block;
+      background: var(--yellow-soft);
+      color: var(--green-dark);
+      border: 1px solid var(--yellow-main);
+      font-weight: 700;
+      font-size: 0.82rem;
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(1.6rem, 3vw, 2.25rem);
+      font-weight: 800;
+      color: var(--green-dark);
+      margin-bottom: 10px;
+    }
+
+    .section-head p {
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+
+    /* Category Cards */
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .cat-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-card);
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .cat-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--green-bright);
+    }
+
+    .cat-num {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: var(--green-dark);
+      color: var(--yellow-main);
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+      font-size: 1rem;
+    }
+
+    .cat-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--green-dark);
+      margin-bottom: 8px;
+    }
+
+    .cat-card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 18px;
+    }
+
+    .cat-link {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--green-mid);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .cat-link:hover {
+      color: var(--green-dark);
+    }
+
+    /* Filter Tabs */
+    .filter-bar {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+
+    .filter-btn {
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: 1.5px solid #cbd5e1;
+      background: var(--white);
+      color: var(--text-main);
+      font-family: inherit;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .filter-btn:hover {
+      border-color: var(--green-mid);
+      color: var(--green-dark);
+    }
+
+    .filter-btn.active {
+      background: var(--green-dark);
+      color: var(--yellow-main);
+      border-color: var(--green-dark);
+    }
+
+    /* Gallery Grid */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .product-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-card);
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .product-img-wrap {
+      position: relative;
+      aspect-ratio: 4 / 3;
+      background: #eef2f0;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .product-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.35s ease;
+    }
+
+    .product-card:hover .product-img-wrap img {
+      transform: scale(1.04);
+    }
+
+    .product-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(12, 59, 32, 0.9);
+      color: var(--yellow-main);
+      font-size: 0.76rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+
+    .product-body {
+      padding: 18px 20px 20px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .product-title {
+      font-size: 1.08rem;
+      font-weight: 700;
+      color: var(--green-dark);
+      margin-bottom: 6px;
+    }
+
+    .product-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .product-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding-top: 10px;
+      border-top: 1px solid #f1f5f9;
+    }
+
+    .product-price {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--green-mid);
+    }
+
+    .btn-order-sm {
+      background: var(--yellow-main);
+      color: var(--green-dark);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 8px 14px;
+      border-radius: 8px;
+      transition: background 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .btn-order-sm:hover {
+      background: var(--yellow-hover);
+    }
+
+    /* Contact & Map */
+    .contact-box {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+    }
+
+    .contact-info {
+      padding: 32px;
+      background: var(--green-dark);
+      color: var(--white);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .contact-info h3 {
+      font-size: 1.5rem;
+      color: var(--yellow-main);
+      margin-bottom: 8px;
+    }
+
+    .contact-item {
+      margin-bottom: 14px;
+    }
+
+    .contact-label {
+      font-size: 0.82rem;
+      color: #a7f3d0;
+      display: block;
+    }
+
+    .contact-value {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .contact-value:hover {
+      color: var(--yellow-main);
+    }
+
+    .map-frame {
+      width: 100%;
+      min-height: 360px;
+      border: 0;
+      display: block;
+    }
+
+    /* Footer */
+    footer {
+      background: #072413;
+      color: #d1fae5;
+      text-align: center;
+      padding: 28px 20px;
+      font-size: 0.9rem;
+    }
+
+    footer strong {
+      color: var(--yellow-main);
+    }
+
+    /* Lightbox Modal */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.72);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 999;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      max-width: 680px;
+      width: 100%;
+      overflow: hidden;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
+    }
+
+    .modal-card img {
+      width: 100%;
+      max-height: 420px;
+      object-fit: cover;
+      display: block;
+      background: #f3f4f6;
+    }
+
+    .modal-body {
+      padding: 20px 24px 24px;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-close-modal {
+      padding: 10px 16px;
+      border-radius: 8px;
+      border: 1px solid #d1d5db;
+      background: var(--white);
+      color: var(--text-main);
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .cat-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .hero-grid,
+      .contact-box {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .cat-grid,
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+      nav {
+        width: 100%;
+        justify-content: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container nav-wrap">
+      <div class="brand-box" id="brandLogoBox">
+        <img id="siteLogoImg" src="./pic/logo.jpg" alt="โลโก้ร้านทธิน" class="brand-logo">
+        <div>
+          <div class="brand-title" id="brandNameDisplay">ทธิน <span>Tathin</span></div>
+          <div class="brand-sub" id="brandSloganNav">พิมพ์คมชัด จัดจ้านทุกรายละเอียด</div>
+        </div>
+      </div>
+
+      <nav>
+        <a href="#categories">หมวดหมู่สินค้า</a>
+        <a href="#gallery">ตัวอย่างงานพิมพ์</a>
+        <a href="#contact">ที่ตั้ง &amp; ติดต่อ</a>
+        <a id="navLineBtn" href="https://lin.ee/2deyskIkX" target="_blank" rel="noopener noreferrer" class="btn-line-nav">สั่งพิมพ์ผ่าน LINE OA</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="hero-badge">Creative Commerce &amp; Printing Platform</div>
+        <h1>
+          <span id="heroMainTitle">ทธิน พิมพ์คมชัด</span>
+          <span class="highlight" id="heroSubTitle">จัดจ้านทุกรายละเอียด</span>
+        </h1>
+        <p id="heroDesc">
+          บริการรับผลิตสติกเกอร์ ฉลากสินค้า นามบัตร โบชัวร์ การ์ด โปสเตอร์ และสื่อสิ่งพิมพ์ครบวงจร สีสวยสด คมชัดทุกชิ้น พร้อมดูแลทั้งงานด่วนและงานสั่งผลิตจำนวนมาก
+        </p>
+        <div class="hero-actions">
+          <a id="heroLineBtn" href="https://lin.ee/2deyskIkX" target="_blank" rel="noopener noreferrer" class="btn-primary">
+            ติดต่อสั่งซื้อผ่าน LINE OA
+          </a>
+          <a href="#gallery" class="btn-outline">ดูตัวอย่างงานพิมพ์</a>
+        </div>
+        <div class="hero-meta">
+          <span>โทร. <strong id="heroPhoneText">064-6428266</strong></span>
+          <span>•</span>
+          <span>รองรับทั้ง PC และสมาร์ทโฟน</span>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <img id="heroBannerImg" src="./pic/banner.png" alt="แบนเนอร์ร้านทธิน" class="hero-banner-img">
+        <div class="hero-qr-row">
+          <div>
+            <div style="font-weight: 800; color: var(--green-dark); font-size: 0.98rem;">สแกนแอด LINE OA ร้านทธิน</div>
+            <div style="font-size: 0.84rem; color: var(--text-muted);">สอบถามราคา ส่งไฟล์งาน และเช็กคิวพิมพ์ได้ทันที</div>
+          </div>
+          <img id="heroQrImg" src="./pic/line-qr.jpg" alt="QR Code LINE OA ร้านทธิน" class="hero-qr-img">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="categories">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-tag">PRODUCT CATEGORIES</span>
+        <h2>หมวดหมู่สินค้าและบริการงานพิมพ์</h2>
+        <p>เลือกชมหมวดหมู่งานพิมพ์ที่ตรงกับแบรนด์และธุรกิจของคุณ กดเลือกเพื่อกรองตัวอย่างงานพิมพ์ได้ทันที</p>
+      </div>
+      <div class="cat-grid" id="categoryCardsContainer"></div>
+    </div>
+  </section>
+
+  <section id="gallery" style="background: #ffffff; border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light);">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-tag">PRINT SHOWCASE</span>
+        <h2>แกลเลอรีตัวอย่างงานพิมพ์</h2>
+        <p>ภาพตัวอย่างงานพิมพ์เก็บไว้ในโฟลเดอร์ <code>./pic/</code> สามารถเปลี่ยนหรือเพิ่มรูปได้ง่ายและรวดเร็ว</p>
+      </div>
+
+      <div class="filter-bar" id="filterBarContainer"></div>
+      <div class="gallery-grid" id="galleryGridContainer"></div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-tag">LOCATION &amp; ORDER</span>
+        <h2>ช่องทางติดต่อสั่งซื้อและที่ตั้งร้าน</h2>
+        <p>พร้อมให้บริการและให้คำปรึกษางานพิมพ์ทุกขั้นตอน</p>
+      </div>
+
+      <div class="contact-box">
+        <div class="contact-info">
+          <div>
+            <h3>ร้านทธิน (Tathin)</h3>
+            <p style="color: #d1fae5; font-size: 0.92rem; margin-bottom: 20px;">
+              ทธิน พิมพ์คมชัด จัดจ้านทุกรายละเอียด
+            </p>
+
+            <div class="contact-item">
+              <span class="contact-label">LINE Official Account</span>
+              <a id="contactLineLink" href="https://lin.ee/2deyskIkX" target="_blank" rel="noopener noreferrer" class="contact-value">
+                https://lin.ee/2deyskIkX
+              </a>
+            </div>
+
+            <div class="contact-item">
+              <span class="contact-label">โทรศัพท์</span>
+              <a id="contactPhoneLink" href="tel:0646428266" class="contact-value">
+                064-6428266
+              </a>
+            </div>
+
+            <div class="contact-item">
+              <span class="contact-label">ที่ตั้ง / Google Maps</span>
+              <a id="contactMapLink" href="https://goo.gl/maps/UTUp8XueckQg2qAN6" target="_blank" rel="noopener noreferrer" class="contact-value">
+                เปิดลิงก์ Google Maps (https://goo.gl/maps/UTUp8XueckQg2qAN6)
+              </a>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <a id="boxLineBtn" href="https://lin.ee/2deyskIkX" target="_blank" rel="noopener noreferrer" class="btn-primary" style="flex: 1;">
+              สั่งซื้อผ่าน LINE OA
+            </a>
+            <a id="boxMapBtn" href="https://goo.gl/maps/UTUp8XueckQg2qAN6" target="_blank" rel="noopener noreferrer" class="btn-outline">
+              นำทาง Google Maps
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <iframe
+            id="googleMapIframe"
+            class="map-frame"
+            title="แผนที่ตั้งร้านทธิน"
+            src="https://maps.google.com/maps?q=18.7883,98.9853&hl=th&z=15&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p><strong>ทธิน (Tathin)</strong> — พิมพ์คมชัด จัดจ้านทุกรายละเอียด | โทร. 064-6428266</p>
+      <p style="margin-top: 6px; font-size: 0.82rem; color: #86efac;">
+        ออกแบบสำหรับอัปโหลดขึ้น GitHub &amp; GitHub Pages (รูปภาพอยู่ในโฟลเดอร์ <code>./pic/</code>)
+      </p>
+    </div>
+  </footer>
+
+  <!-- Modal Lightbox -->
+  <div class="modal-backdrop" id="imageModal" onclick="closeModalOnBackdrop(event)">
+    <div class="modal-card">
+      <img id="modalImg" src="" alt="ตัวอย่างงานพิมพ์">
+      <div class="modal-body">
+        <div id="modalCategory" style="font-size: 0.8rem; font-weight: 700; color: var(--green-mid); margin-bottom: 4px;"></div>
+        <h3 id="modalTitle" style="font-size: 1.25rem; color: var(--green-dark); margin-bottom: 6px;"></h3>
+        <p id="modalDesc" style="color: var(--text-muted); font-size: 0.94rem;"></p>
+        <div id="modalPrice" style="margin-top: 10px; font-weight: 800; color: var(--green-dark);"></div>
+        <div class="modal-actions">
+          <button type="button" class="btn-close-modal" onclick="closeModal()">ปิดหน้าต่าง</button>
+          <a id="modalLineBtn" href="https://lin.ee/2deyskIkX" target="_blank" rel="noopener noreferrer" class="btn-primary">
+            สั่งทำรายการนี้ผ่าน LINE OA
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /**
+     * =========================================================================
+     * แก้ไขข้อมูลร้าน รูปภาพ และหมวดหมู่ได้ง่ายๆ ที่ TATHIN_CONFIG ด้านล่างนี้
+     * ไฟล์รูปภาพทั้งหมดให้วางไว้ในโฟลเดอร์ ./pic/ บน GitHub Repository
+     * =========================================================================
+     */
+    const TATHIN_CONFIG = {
+      shopName: "ทธิน",
+      shopNameEn: "Tathin",
+      slogan: "พิมพ์คมชัด จัดจ้านทุกรายละเอียด",
+      phone: "064-6428266",
+      lineUrl: "https://lin.ee/2deyskIkX",
+      mapUrl: "https://goo.gl/maps/UTUp8XueckQg2qAN6",
+      mapEmbedUrl: "https://maps.google.com/maps?q=18.7883,98.9853&hl=th&z=15&output=embed",
+      assets: {
+        logo: "./pic/logo.jpg",
+        banner: "./pic/banner.png",
+        qrLine: "./pic/line-qr.jpg"
+      },
+      categories: [
+        {
+          id: "cat-1",
+          code: "01",
+          name: "สติกเกอร์ & ฉลากสินค้า",
+          desc: "สติกเกอร์ไดคัทกันน้ำ PVC/PP และสติกเกอร์กระดาษติดแบรนด์สินค้า คมชัดทุกเส้นตัด"
+        },
+        {
+          id: "cat-2",
+          code: "02",
+          name: "สติกเกอร์ & ฉลากสินค้า (แบบสำเร็จรูป)",
+          desc: "สติกเกอร์ฉลากสินค้าพร้อมใช้งาน ดีไซน์สวยทันสมัย ประหยัดเวลาและต้นทุน"
+        },
+        {
+          id: "cat-3",
+          code: "03",
+          name: "นามบัตร",
+          desc: "นามบัตรกระดาษคุณภาพสูง พิมพ์คมชัด เคลือบด้านหรือเงา เสริมภาพลักษณ์มืออาชีพ"
+        },
+        {
+          id: "cat-4",
+          code: "04",
+          name: "โบชัวร์ การ์ด & สื่อสิ่งพิมพ์อื่นๆ",
+          desc: "แผ่นพับ 3 ตอน โบชัวร์สินค้าสีสันสดใส การ์ดแต่งงาน การ์ดอวยพร โปสเตอร์ และเมนู"
+        }
+      ],
+      products: [
+        {
+          id: "p-1",
+          categoryId: "cat-1",
+          categoryLabel: "1. สติกเกอร์ & ฉลากสินค้า",
+          title: "สติกเกอร์ไดคัทกันน้ำ (PP / PVC)",
+          desc: "ทนน้ำ ทนชื้น แช่เย็นได้ สีสดคมชัด ไดคัทตามรูปทรง เหมาะกับเครื่องดื่ม อาหาร และสกินแคร์",
+          price: "เริ่มต้น 190 บาท",
+          image: "./pic/sticker-waterproof-01.jpg"
+        },
+        {
+          id: "p-2",
+          categoryId: "cat-1",
+          categoryLabel: "1. สติกเกอร์ & ฉลากสินค้า",
+          title: "สติกเกอร์กระดาษไดคัทติดแบรนด์สินค้า",
+          desc: "พิมพ์คมชัด เหมาะสำหรับติดกล่องพัสดุ ถุงขนม และบรรจุภัณฑ์ที่ต้องการความอบอุ่นเป็นกันเอง",
+          price: "เริ่มต้น 150 บาท",
+          image: "./pic/sticker-paper-brand-01.jpg"
+        },
+        {
+          id: "p-3",
+          categoryId: "cat-2",
+          categoryLabel: "2. สติกเกอร์ & ฉลากสินค้า (แบบสำเร็จรูป)",
+          title: "สติกเกอร์ไดคัทกันน้ำ แบบสำเร็จรูป",
+          desc: "ลายสำเร็จรูปพร้อมใช้ เช่น ขอบคุณที่อุดหนุน สินค้าโฮมเมด เปิดใหม่ กันน้ำ 100%",
+          price: "เริ่มต้น 99 บาท",
+          image: "./pic/sticker-ready-waterproof-01.jpg"
+        },
+        {
+          id: "p-4",
+          categoryId: "cat-2",
+          categoryLabel: "2. สติกเกอร์ & ฉลากสินค้า (แบบสำเร็จรูป)",
+          title: "สติกเกอร์กระดาษไดคัทติดแบรนด์ แบบสำเร็จรูป",
+          desc: "ฉลากกระดาษดีไซน์สำเร็จรูปโทนเขียว-เหลือง-มินิมอล หยิบไปติดสินค้าได้ทันที",
+          price: "เริ่มต้น 89 บาท",
+          image: "./pic/sticker-ready-paper-01.jpg"
+        },
+        {
+          id: "p-5",
+          categoryId: "cat-3",
+          categoryLabel: "3. นามบัตร",
+          title: "นามบัตรพรีเมียม พิมพ์ 1-2 หน้า",
+          desc: "กระดาษอาร์ตการ์ดหนา 260–350 แกรม เลือกเคลือบด้าน เคลือบเงา หรือ Spot UV ได้",
+          price: "เริ่มต้น 250 บาท / กล่อง",
+          image: "./pic/business-card-01.jpg"
+        },
+        {
+          id: "p-6",
+          categoryId: "cat-4",
+          categoryLabel: "4. โบชัวร์ การ์ด & สื่อสิ่งพิมพ์อื่นๆ",
+          title: "แผ่นพับ 3 ตอน (Tri-fold Brochure)",
+          desc: "พับเรียบเนียน 3 ตอน จัดลำดับข้อมูลสินค้าและบริการชัดเจน เหมาะสำหรับแนะนำธุรกิจและโปรโมชัน",
+          price: "สอบถามราคาตามจำนวน",
+          image: "./pic/brochure-trifold-01.jpg"
+        },
+        {
+          id: "p-7",
+          categoryId: "cat-4",
+          categoryLabel: "4. โบชัวร์ การ์ด & สื่อสิ่งพิมพ์อื่นๆ",
+          title: "โบชัวร์สินค้าสีสันสดใส",
+          desc: "พิมพ์สีสดคมชัด จัดจ้านทุกรายละเอียด ดึงดูดสายตา กระตุ้นยอดขายหน้าร้านและแจกโปรโมชัน",
+          price: "สอบถามราคาตามจำนวน",
+          image: "./pic/brochure-colorful-01.jpg"
+        },
+        {
+          id: "p-8",
+          categoryId: "cat-4",
+          categoryLabel: "4. โบชัวร์ การ์ด & สื่อสิ่งพิมพ์อื่นๆ",
+          title: "การ์ดแต่งงาน / การ์ดอวยพร",
+          desc: "การ์ดงานมงคล การ์ดขอบคุณ และการ์ดอวยพรเทศกาลต่างๆ เลือกกระดาษและขนาดได้ตามต้องการ",
+          price: "สอบถามราคาตามแบบ",
+          image: "./pic/greeting-card-01.jpg"
+        }
+      ]
+    };
+
+    let activeCategoryFilter = "ALL";
+
+    function initSite() {
+      document.getElementById("siteLogoImg").src = TATHIN_CONFIG.assets.logo;
+      document.getElementById("heroBannerImg").src = TATHIN_CONFIG.assets.banner;
+      document.getElementById("heroQrImg").src = TATHIN_CONFIG.assets.qrLine;
+
+      document.getElementById("heroPhoneText").textContent = TATHIN_CONFIG.phone;
+      document.getElementById("contactPhoneLink").textContent = TATHIN_CONFIG.phone;
+      document.getElementById("contactPhoneLink").href = "tel:" + TATHIN_CONFIG.phone.replace(/[^0-9]/g, "");
+
+      const lineLinks = ["navLineBtn", "heroLineBtn", "contactLineLink", "boxLineBtn", "modalLineBtn"];
+      lineLinks.forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) el.href = TATHIN_CONFIG.lineUrl;
+      });
+      document.getElementById("contactLineLink").textContent = TATHIN_CONFIG.lineUrl;
+
+      document.getElementById("contactMapLink").href = TATHIN_CONFIG.mapUrl;
+      document.getElementById("contactMapLink").textContent = "เปิดลิงก์ Google Maps (" + TATHIN_CONFIG.mapUrl + ")";
+      document.getElementById("boxMapBtn").href = TATHIN_CONFIG.mapUrl;
+      document.getElementById("googleMapIframe").src = TATHIN_CONFIG.mapEmbedUrl;
+
+      renderCategories();
+      renderFilterBar();
+      renderGallery();
+    }
+
+    function renderCategories() {
+      const container = document.getElementById("categoryCardsContainer");
+      container.innerHTML = TATHIN_CONFIG.categories.map((cat) => `
+        <div class="cat-card">
+          <div>
+            <div class="cat-num">${cat.code}</div>
+            <h3>${cat.name}</h3>
+            <p>${cat.desc}</p>
+          </div>
+          <a href="#gallery" class="cat-link" onclick="selectCategoryFromCard('${cat.id}')">
+            ดูตัวอย่างงานพิมพ์ →
+          </a>
+        </div>
+      `).join("");
+    }
+
+    function selectCategoryFromCard(categoryId) {
+      activeCategoryFilter = categoryId;
+      renderFilterBar();
+      renderGallery();
+    }
+
+    function renderFilterBar() {
+      const bar = document.getElementById("filterBarContainer");
+      const allBtn = `<button type="button" class="filter-btn ${activeCategoryFilter === "ALL" ? "active" : ""}" onclick="setFilter('ALL')">ทั้งหมด (${TATHIN_CONFIG.products.length})</button>`;
+      const catBtns = TATHIN_CONFIG.categories.map((cat) => {
+        const count = TATHIN_CONFIG.products.filter((p) => p.categoryId === cat.id).length;
+        const isActive = activeCategoryFilter === cat.id ? "active" : "";
+        return `<button type="button" class="filter-btn ${isActive}" onclick="setFilter('${cat.id}')">${cat.code}. ${cat.name} (${count})</button>`;
+      }).join("");
+      bar.innerHTML = allBtn + catBtns;
+    }
+
+    function setFilter(categoryId) {
+      activeCategoryFilter = categoryId;
+      renderFilterBar();
+      renderGallery();
+    }
+
+    function renderGallery() {
+      const grid = document.getElementById("galleryGridContainer");
+      const items = activeCategoryFilter === "ALL"
+        ? TATHIN_CONFIG.products
+        : TATHIN_CONFIG.products.filter((p) => p.categoryId === activeCategoryFilter);
+
+      grid.innerHTML = items.map((item) => `
+        <article class="product-card">
+          <div class="product-img-wrap" onclick="openModal('${item.id}')">
+            <img src="${item.image}" alt="${item.title}" loading="lazy" onerror="this.src='./pic/logo.jpg'">
+            <span class="product-badge">${item.categoryLabel}</span>
+          </div>
+          <div class="product-body">
+            <div>
+              <h3 class="product-title">${item.title}</h3>
+              <p class="product-desc">${item.desc}</p>
+            </div>
+            <div class="product-footer">
+              <span class="product-price">${item.price}</span>
+              <a href="${TATHIN_CONFIG.lineUrl}" target="_blank" rel="noopener noreferrer" class="btn-order-sm">
+                สั่งซื้อผ่าน LINE OA
+              </a>
+            </div>
+          </div>
+        </article>
+      `).join("");
+    }
+
+    function openModal(productId) {
+      const item = TATHIN_CONFIG.products.find((p) => p.id === productId);
+      if (!item) return;
+      document.getElementById("modalImg").src = item.image;
+      document.getElementById("modalImg").onerror = function () { this.src = "./pic/logo.jpg"; };
+      document.getElementById("modalCategory").textContent = item.categoryLabel;
+      document.getElementById("modalTitle").textContent = item.title;
+      document.getElementById("modalDesc").textContent = item.desc;
+      document.getElementById("modalPrice").textContent = item.price;
+      document.getElementById("modalLineBtn").href = TATHIN_CONFIG.lineUrl;
+      document.getElementById("imageModal").classList.add("open");
+    }
+
+    function closeModal() {
+      document.getElementById("imageModal").classList.remove("open");
+    }
+
+    function closeModalOnBackdrop(event) {
+      if (event.target.id === "imageModal") {
+        closeModal();
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", initSite);
+  </script>
+</body>
+</html>
